@@ -1,15 +1,17 @@
+import { stream } from "../index";
+
 it("stream()", () => {
-  throw new Error("Not yet implemented.");
+  expect(stream()).toBeDefined();
 });
 
 it("stream(1, 2, 3)", () => {
-  throw new Error("Not yet implemented.");
+  expect(stream(1, 2, 3).collect()).toEqual([1, 2, 3]);
 });
 
 it("stream(1n, 2n, 3n)", () => {
-  throw new Error("Not yet implemented.");
+  expect(stream(1n, 2n, 3n).collect()).toEqual([1n, 2n, 3n]);
 });
 
 it("stream('a', 'b', 'c')", () => {
-  throw new Error("Not yet implemented.");
+  expect(stream("a", "b", "c").collect()).toEqual(["a", "b", "c"]);
 });

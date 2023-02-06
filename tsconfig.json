@@ -3,13 +3,13 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-    "incremental": true,
     "declaration": true,
     "esModuleInterop": true,
     "inlineSourceMap": false,
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "node",
     "rootDir": "src",
+    "target": "ESNext",
 
     "baseUrl": ".",
     "paths": {

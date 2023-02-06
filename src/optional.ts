@@ -1,4 +1,7 @@
-import { type Optional } from "./optional.d";
+export declare interface Optional<T> {
+  value: T | undefined;
+  present: boolean;
+}
 
 export function ofNullable<T>(value: T | undefined): Optional<T> {
   return { value, present: value !== undefined };
