@@ -1,5 +1,5 @@
 {
-  "name": "ts-toolkit",
+  "name": "@azoraqua/ts-toolkit",
   "version": "1.0.0",
   "description": "A set of utilities for TypeScript.",
   "main": "dist/cjs/index.js",
