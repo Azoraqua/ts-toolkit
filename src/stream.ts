@@ -15,7 +15,7 @@ export declare interface Stream<T> {
   forEach: (fn: Consumer<T>) => void;
 
   count: Supplier<number>;
-  collect: <U extends Iterable<T>>() => T[] | U;
+  collect: Supplier<T[]>;
 
   findFirst: (fn: Predicate<T>) => Optional<T>;
   findAny: (fn: Predicate<T>) => Optional<T[]>;
