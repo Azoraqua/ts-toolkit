@@ -5,6 +5,10 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Azoraqua/ts-toolkit.git"
+  },
   "scripts": {
     "build:cjs": "tsc && ts-node scripts/build-cjs.ts",
     "build:esm": "tsc && ts-node scripts/build-esm.ts",
