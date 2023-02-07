@@ -1,15 +1,14 @@
 import {
   type Consumer,
   type Predicate,
-  type Reducer,
   type Function,
   type Supplier,
   type Optional,
   ofNullable,
-} from "./index";
+} from "../index";
 
 export declare interface Stream<T> {
-  map: <U>(fn: Function<T, U>) => Stream<U>;
+  map: <U>(fn: Function<T, U>) => NumberStream | BigIntStream | Stream<U>;
   filter: (fn: Predicate<T>) => Stream<T>;
   //   reduce: <U>(fn: Reducer<T, U>) => Stream<U>;
   forEach: (fn: Consumer<T>) => void;
@@ -20,6 +19,8 @@ export declare interface Stream<T> {
   findFirst: (fn: Predicate<T>) => Optional<T>;
   findAny: (fn: Predicate<T>) => Optional<T[]>;
 }
+
+export declare interface GenericStream<T> extends Stream<T> {}
 
 export declare interface NumberStream extends Stream<number> {
   sum: Supplier<number>;
@@ -47,7 +48,18 @@ export function stream<T>(
 
 function __createBaseStream<T>(...input: T[]): Stream<T> {
   return {
-    map: <U>(fn: Function<T, U>) => __createBaseStream(...input.map(fn)),
+    map: <U>(fn: Function<T, U>) => {
+      const mapped = input.map(fn);
+
+      if (typeof mapped[0] === "number") {
+        return __createNumberStream(...(mapped as number[]));
+      } else if (typeof mapped[0] === "bigint") {
+        return __createBigIntStream(...(mapped as bigint[]));
+      } else {
+        return __createBaseStream(...mapped);
+      }
+    },
+
     filter: (fn: Predicate<T>) => __createBaseStream(...input.filter(fn)),
     // reduce: <U>(fn: Reducer<T, U>) => __createBaseStream(...input.reduce(fn)),
     forEach: (fn: Consumer<T>) => input.forEach(fn),

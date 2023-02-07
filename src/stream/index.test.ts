@@ -9,7 +9,11 @@ it("stream(1, 2, 3)", () => {
 });
 
 it("stream(1n, 2n, 3n)", () => {
-  expect(stream(1n, 2n, 3n).collect()).toEqual([1n, 2n, 3n]);
+  expect(stream(BigInt(1), BigInt(2), BigInt(3)).collect()).toEqual([
+    BigInt(1),
+    BigInt(2),
+    BigInt(3),
+  ]);
 });
 
 it("stream('a', 'b', 'c')", () => {
